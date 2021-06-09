@@ -39,6 +39,11 @@ namespace Business.Concrete
             return _contentDal.List();
         }
 
+        public List<Content> GetListByHeadingId(int id)
+        {
+            return _contentDal.List(x => x.HeadingId == id);
+        }
+
         public void Update(Content content)
         {
             _contentDal.Update(content);

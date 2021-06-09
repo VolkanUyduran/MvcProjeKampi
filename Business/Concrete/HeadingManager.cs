@@ -18,6 +18,12 @@ namespace Business.Concrete
             _headingDal = headingDal;
         }
 
+        public void Active(Heading heading)
+        {
+            heading.HeadingStatus = true;
+            _headingDal.Update(heading);
+        }
+
         public void Add(Heading heading)
         {
             _headingDal.Insert(heading);
@@ -25,7 +31,8 @@ namespace Business.Concrete
 
         public void Delete(Heading heading)
         {
-            _headingDal.Delete(heading);
+            
+            _headingDal.Update(heading);
         }
 
         public Heading GetById(int id)

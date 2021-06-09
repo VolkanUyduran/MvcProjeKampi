@@ -11,6 +11,7 @@ namespace Business.Abstarct
     {
         List<Heading> GetList();
         Heading GetById(int id);
+        void Active(Heading heading);
         void Add(Heading heading);
         void Delete(Heading heading);
         void Update(Heading heading);
