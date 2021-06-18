@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using Business.ValidationRules;
+using DataAccess.Concrete;
 using DataAccess.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,69 @@ namespace MvcProjeKampi.Controllers
 {
     public class ContactController : Controller
     {
-        ContactManager cm = new ContactManager(new EfContactDal());
+        
+        ContactManager contactManager = new ContactManager(new EfContactDal());
+        MessageManager messageManager = new MessageManager(new EfMessageDal());
         ContactValidator cv = new ContactValidator();
         public ActionResult Index()
         {
-            var contactvalues = cm.GetList();
+            var contactvalues = contactManager.GetList();
             return View(contactvalues);
         }
         public ActionResult GetContactDetails(int id)
         {
-            var contactvalues = cm.GetById(id);
+            var contactvalues = contactManager.GetById(id);
             return View(contactvalues);
+        }
+        public PartialViewResult Menu()
+        {
+            var receiverMail = messageManager.GetListInbox().Count();
+            ViewBag.receiverMail = receiverMail;
+
+            var senderMail = messageManager.GetListSendbox().Count();
+            ViewBag.senderMail = senderMail;
+
+            var draftMail = messageManager.GetListSendbox().Where(x => x.IsDraft == true).Count();
+            ViewBag.draftMail = draftMail;
+
+            var contact = contactManager.GetList().Count();
+            ViewBag.contact = contact;
+
+            var unreadMail = messageManager.GetAllRead().Count();
+            ViewBag.unreadMail = unreadMail;
+
+            var readMail = messageManager.GetListInbox().Where(x => x.IsRead == true).Count();
+            ViewBag.readMail = readMail;
+
+            return PartialView();
+        }
+        public ActionResult IsRead(int id)
+        {
+            var contactvalue = contactManager.GetById(id);
+            if (contactvalue.IsRead)
+            {
+                contactvalue.IsRead = false;
+            }
+            else
+            {
+                contactvalue.IsRead = true;
+            }
+            contactManager.Update(contactvalue);
+            return RedirectToAction("Index");
+        }
+        public ActionResult IsImportant(int id)
+        {
+            var contactvalue = contactManager.GetById(id);
+            if (contactvalue.IsImportant)
+            {
+                contactvalue.IsImportant = false;
+            }
+            else
+            {
+                contactvalue.IsImportant = true;
+            }
+            contactManager.Update(contactvalue);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -24,6 +24,7 @@ namespace MvcProjeKampi.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Roles="A")]
         public ActionResult AddAbout(About p)
         {
             abm.Add(p);
@@ -32,6 +33,20 @@ namespace MvcProjeKampi.Controllers
         public PartialViewResult AboutPartial()
         {
             return PartialView();
+        }
+        public ActionResult IsActive(int id)
+        {
+            var aboutvalue = abm.GetById(id);
+            if (aboutvalue.AboutStatus)
+            {
+                aboutvalue.AboutStatus = false;
+            }
+            else
+            {
+                aboutvalue.AboutStatus = true;
+            }
+            abm.Update(aboutvalue);
+            return RedirectToAction("Index");
         }
     }
 }

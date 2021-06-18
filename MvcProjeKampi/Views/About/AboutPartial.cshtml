@@ -1,13 +1,14 @@
-﻿<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
-    Yeni Hakkımızda Yazı Girişi
+﻿<button class="btn btn-outline-primary" data-toggle="modal" data-target="#Modal1">
+    Yeni Hakkımızda Girişi
 </button>
+
 <div class="modal" id="Modal1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">Hakkımızda Metin Girişi</h2>
             </div>
-            <form method="post" action="/About/AddAbout/">
+            <form method="post" action="/About/AddAbout">
                 <div class="modal-body">
                     <label>Hakkımda Metin 1</label>
                     <input type="text" name="AboutDetails1" class="form-control" />
@@ -27,3 +28,5 @@
         </div>
     </div>
 </div>
+
+<script src="~/Theme/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
