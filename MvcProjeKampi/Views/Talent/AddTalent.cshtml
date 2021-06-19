@@ -1,0 +1,21 @@
+﻿@model Entity.Concrete.Talent
+@{
+    ViewBag.Title = "AddTalent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h1>Yeni Yetenek Ekleme Sayfası</h1>
+<br />
+@using (Html.BeginForm("AddTalent", "Talent", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Yetenek Adı")
+        @Html.TextBoxFor(x => x.TalentName, new { @class = "form-control" })
+        <br /><br />
+        @Html.Label("Yetenek Derecen")
+        @Html.TextBoxFor(x => x.Percent, new { @class = "form-control" })
+        <br /><br />
+        <button class="btn btn-primary">Kaydet</button>
+    </div>
+}
