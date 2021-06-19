@@ -30,11 +30,11 @@ namespace Business.Concrete
 
         public List<Message> GetListInbox()
         {
-            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com");
+            return _messageDal.List(x => x.ReceiverMail == "alitildiz@gmail.com");
         }
         public List<Message> GetListSendbox()
         {
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com");
+            return _messageDal.List(x => x.SenderMail == "alitildiz@gmail.com");
         }
 
         public List<Message> IsDraft()

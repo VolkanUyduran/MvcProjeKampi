@@ -24,7 +24,7 @@ namespace MvcProjeKampi.Controllers
             return View();
         }
         [HttpPost]
-        [Authorize(Roles="A")]
+        
         public ActionResult AddAbout(About p)
         {
             abm.Add(p);

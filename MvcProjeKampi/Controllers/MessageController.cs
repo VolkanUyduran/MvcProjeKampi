@@ -48,7 +48,7 @@ namespace MvcProjeKampi.Controllers
             {
                 if (validationResult.IsValid)
                 {
-                    message.SenderMail = "admin@gmail.com";
+                    message.SenderMail = "alitildiz@gmail.com";
                     message.IsDraft = false;
                     message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                     messageManager.MessageAdd(message);

@@ -11,6 +11,7 @@ namespace Business.Abstarct
     {
         List<Content> GetList();
         List<Content> GetListByHeadingId(int id);
+        List<Content> GetListByWriter();
         Content GetById(int id);
         void Add(Content content);
         void Update(Content content);
