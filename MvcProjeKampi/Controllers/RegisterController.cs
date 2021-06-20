@@ -35,7 +35,7 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult WriterRegister(WriterLoginDto writerLoginDto)
         {
-            authService.WriterRegister(writerLoginDto.WriterEmail, writerLoginDto.WriterPassword);
+            authService.WriterRegister(writerLoginDto.WriterMail, writerLoginDto.WriterPassword);
             return RedirectToAction("MyContent", "WriterPanelContent");
         }
     }

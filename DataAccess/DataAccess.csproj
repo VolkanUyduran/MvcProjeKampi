@@ -150,6 +150,10 @@
     <Compile Include="Migrations\202106191453409_mig_talentcard.designer.cs">
       <DependentUpon>202106191453409_mig_talentcard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106201228369_mig_hash.cs" />
+    <Compile Include="Migrations\202106201228369_mig_hash.designer.cs">
+      <DependentUpon>202106201228369_mig_hash.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -220,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106191453409_mig_talentcard.resx">
       <DependentUpon>202106191453409_mig_talentcard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106201228369_mig_hash.resx">
+      <DependentUpon>202106201228369_mig_hash.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

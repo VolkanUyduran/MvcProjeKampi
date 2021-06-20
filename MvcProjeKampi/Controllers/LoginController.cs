@@ -18,7 +18,7 @@ using MvcProjeKampi.Models;
 
 namespace MvcProjeKampi.Controllers
 {
-    [AllowAnonymous]
+    
     public class LoginController : Controller
     {
         IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
@@ -78,8 +78,8 @@ namespace MvcProjeKampi.Controllers
 
             if (authService.WriterLogin(writerLoginDto) && captchaResponse.Success)
             {
-                FormsAuthentication.SetAuthCookie(writerLoginDto.WriterEmail, false);
-                Session["WriterEmail"] = writerLoginDto.WriterEmail;
+                FormsAuthentication.SetAuthCookie(writerLoginDto.WriterMail, false);
+                Session["WriterMail"] = writerLoginDto.WriterMail;
                 return RedirectToAction("MyContent", "WriterPanelContent");
             }
             else

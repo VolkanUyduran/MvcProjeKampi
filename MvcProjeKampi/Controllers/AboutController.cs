@@ -24,7 +24,6 @@ namespace MvcProjeKampi.Controllers
             return View();
         }
         [HttpPost]
-        
         public ActionResult AddAbout(About p)
         {
             abm.Add(p);

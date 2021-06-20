@@ -8,7 +8,7 @@ namespace Entity.Dto
 {
    public class WriterLoginDto
     {
-        public string WriterEmail { get; set; }
+        public string WriterMail { get; set; }
         public string WriterPassword { get; set; }
     }
 }

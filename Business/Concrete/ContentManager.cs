@@ -44,9 +44,9 @@ namespace Business.Concrete
             return _contentDal.List(x => x.HeadingId == id);
         }
 
-        public List<Content> GetListByWriter()
+        public List<Content> GetListByWriter(int id)
         {
-            return _contentDal.List(x => x.WriterId == 3);
+            return _contentDal.List(x => x.WriterId == id);
         }
 
         public void Update(Content content)
