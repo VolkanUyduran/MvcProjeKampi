@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete;
 using DataAccess.EntityFramework;
 using Entity.Concrete;
 using System;
@@ -13,14 +14,19 @@ namespace MvcProjeKampi.Controllers
     {
         HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+        Context context = new Context();
+
         public ActionResult WriterProfile()
         {
             return View();
         }
-        public ActionResult MyHeading()
+        public ActionResult MyHeading(string p)
         {
-           
-            var values = headingManager.GetListByWriter();
+            Context context = new Context();
+            p = (string)Session["WriterMail"];
+            var writeridinfo = context.Writers.Where(x => x.WriterMail == p).Select(y => y.WriterId).FirstOrDefault();
+
+            var values = headingManager.GetListByWriter(writeridinfo);
             return View(values);
         }
         [HttpGet]
@@ -39,12 +45,14 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult NewHeading(Heading heading)
         {
+            string writermailinfo = (string)Session["WriterMail"];
+            var writeridinfo = context.Writers.Where(x => x.WriterMail == writermailinfo).Select(y => y.WriterId).FirstOrDefault();
             heading.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            heading.WriterId = 1;
+            heading.WriterId = writeridinfo;
             heading.HeadingStatus = true;
             headingManager.Add(heading);
             return RedirectToAction("MyHeading");
-       
+
         }
         public ActionResult EditHeading(int id)
         {
@@ -78,6 +86,11 @@ namespace MvcProjeKampi.Controllers
             var heading = headingManager.GetById(id);
             headingManager.Active(heading);
             return RedirectToAction("MyHeading");
+        }
+        public ActionResult AllHeading()
+        {
+            var headings = headingManager.GetList();
+            return View(headings);
         }
     }
 }

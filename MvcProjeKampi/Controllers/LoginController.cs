@@ -18,7 +18,7 @@ using MvcProjeKampi.Models;
 
 namespace MvcProjeKampi.Controllers
 {
-    
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
