@@ -20,7 +20,7 @@ namespace Business.Concrete
 
         public Talent GetByID(int id)
         {
-            return _talentDal.Get(x => x.TalentId == id);
+            return _talentDal.Get(x => x.SkillId == id);
         }
 
         public List<Talent> GetList()

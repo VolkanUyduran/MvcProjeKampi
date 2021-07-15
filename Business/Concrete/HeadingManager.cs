@@ -20,7 +20,7 @@ namespace Business.Concrete
 
         public void Active(Heading heading)
         {
-            heading.HeadingStatus = true;
+            //heading.sta = true;
             _headingDal.Update(heading);
         }
 

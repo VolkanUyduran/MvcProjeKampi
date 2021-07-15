@@ -15,6 +15,9 @@ namespace Entity.Concrete
         public string CategoryDescription { get; set; }
 
         public bool CategoryStatus { get; set; }
+        public int? StatusId { get; set; }
+
+        public virtual Status Status { get; set; }
 
         public ICollection<Heading> Headings { get; set; }
     }

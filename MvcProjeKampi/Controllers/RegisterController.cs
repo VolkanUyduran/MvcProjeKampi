@@ -10,22 +10,12 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
-
         IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
-        // GET: Register
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Index(LoginDto loginDto)
-        {
-            authService.Register(loginDto.AdminUserName, loginDto.AdminPassword);
-            return RedirectToAction("Index", "AdminCategory");
-        }
+        RoleManager roleManager = new RoleManager(new EfRoleDal());
+        StatusManager statusManager = new StatusManager(new EfStatusDal());
 
         [HttpGet]
         public ActionResult WriterRegister()
@@ -35,7 +25,17 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult WriterRegister(WriterLoginDto writerLoginDto)
         {
-            authService.WriterRegister(writerLoginDto.WriterMail, writerLoginDto.WriterPassword);
+            authService.WriterRegister(
+                writerLoginDto.WriterName,
+                writerLoginDto.WriterSurName,
+                writerLoginDto.WriterTitle,
+                writerLoginDto.WriterAbout,
+                writerLoginDto.WriterImage,
+                writerLoginDto.WriterUserName,
+                writerLoginDto.WriterMail,
+                writerLoginDto.WriterPassword,
+                writerLoginDto.WriterStatus = true
+                );
             return RedirectToAction("MyContent", "WriterPanelContent");
         }
     }

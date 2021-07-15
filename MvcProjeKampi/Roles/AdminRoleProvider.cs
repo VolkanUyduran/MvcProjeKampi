@@ -13,6 +13,7 @@ namespace MvcProjeKampi.Roles
     public class AdminRoleProvider : RoleProvider
     {
         AdminManager adminManager = new AdminManager(new EfAdminDal());
+        WriterManager writerManager = new WriterManager(new EfWriterDal());
         public override string ApplicationName
         {
             get => throw new NotImplementedException();
@@ -46,17 +47,22 @@ namespace MvcProjeKampi.Roles
 
         public override string[] GetRolesForUser(string username)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var crypto = new System.Security.Cryptography.HMACSHA512())
             {
-                var userNameHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(username));
-                var user = adminManager.GetAdmins();
-                foreach (var item in user)
+                var mailCrypto = crypto.ComputeHash(Encoding.UTF8.GetBytes(username));
+                var admin = adminManager.GetAdmins();
+                var writer = writerManager.GetList();
+
+                if (admin != null)
                 {
-                    for (int i = 0; i < userNameHash.Length; i++)
+                    foreach (var item in admin)
                     {
-                        if (userNameHash[i] == item.AdminUserName[i])
+                        for (int i = 0; i < mailCrypto.Length; i++)
                         {
-                            return new string[] { item.AdminRole };
+                            if (mailCrypto[i] == item.AdminMail[i])
+                            {
+                                return new string[] { item.Role.RoleName };
+                            }
                         }
                     }
                 }

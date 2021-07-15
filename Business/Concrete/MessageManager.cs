@@ -28,13 +28,13 @@ namespace Business.Concrete
            return _messageDal.Get(x=>x.MessageId==id);
         }
 
-        public List<Message> GetListInbox()
+        public List<Message> GetListInbox(string p)
         {
-            return _messageDal.List(x => x.ReceiverMail == "alitildiz@gmail.com");
+            return _messageDal.List(x => x.ReceiverMail == p);
         }
-        public List<Message> GetListSendbox()
+        public List<Message> GetListSendbox(string p)
         {
-            return _messageDal.List(x => x.SenderMail == "alitildiz@gmail.com");
+            return _messageDal.List(x => x.SenderMail ==p);
         }
 
         public List<Message> IsDraft()

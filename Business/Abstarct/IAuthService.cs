@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Business.Abstarct
 {
-    public interface IAuthService
+   public interface IAuthService
     {
-        void Register(string adminMail, string password);
-        bool Login(LoginDto loginDto);
-        bool WriterLogin(WriterLoginDto writerLoginDto);
-        void WriterRegister(string mail, string password);
+        void AdminRegister(string adminUserName, string adminMail, string password, int adminRole, int status);
+        bool AdminLogIn(LoginDto LoginDto);
+
+        void WriterRegister(string writerName, string writerSurName, string writerTitle, string writerAbout, string writerImage, string writerUserName, string writerMail, string password, bool WriterStatus);
+        bool WriterLogIn(WriterLoginDto writerLogInDto);
     }
 }

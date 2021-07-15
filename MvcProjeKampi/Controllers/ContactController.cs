@@ -27,15 +27,15 @@ namespace MvcProjeKampi.Controllers
             var contactvalues = contactManager.GetById(id);
             return View(contactvalues);
         }
-        public PartialViewResult Menu()
+        public PartialViewResult Menu(string p)
         {
-            var receiverMail = messageManager.GetListInbox().Count();
+            var receiverMail = messageManager.GetListInbox(p).Count();
             ViewBag.receiverMail = receiverMail;
 
-            var senderMail = messageManager.GetListSendbox().Count();
+            var senderMail = messageManager.GetListSendbox(p).Count();
             ViewBag.senderMail = senderMail;
 
-            var draftMail = messageManager.GetListSendbox().Where(x => x.IsDraft == true).Count();
+            var draftMail = messageManager.GetListSendbox(p).Where(x => x.IsDraft == true).Count();
             ViewBag.draftMail = draftMail;
 
             var contact = contactManager.GetList().Count();
@@ -44,7 +44,7 @@ namespace MvcProjeKampi.Controllers
             var unreadMail = messageManager.GetAllRead().Count();
             ViewBag.unreadMail = unreadMail;
 
-            var readMail = messageManager.GetListInbox().Where(x => x.IsRead == true).Count();
+            var readMail = messageManager.GetListInbox(p).Where(x => x.IsRead == true).Count();
             ViewBag.readMail = readMail;
 
             return PartialView();

@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using Business.ValidationRules;
+using DataAccess.Concrete;
 using DataAccess.EntityFramework;
 using Entity.Concrete;
 using FluentValidation.Results;
@@ -15,14 +16,18 @@ namespace MvcProjeKampi.Controllers
     {
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messagevalidator = new MessageValidator();
+
         public ActionResult Inbox()
         {
-            var MessageList = messageManager.GetListInbox();
+            string p = (string)Session["WriterMail"];
+
+            var MessageList = messageManager.GetListInbox(p);
             return View(MessageList);
         }
         public ActionResult Sendbox()
         {
-            var messagelist = messageManager.GetListSendbox();
+            string p = (string)Session["WriterMail"];
+            var messagelist = messageManager.GetListSendbox(p);
             return View(messagelist);
         }
         public PartialViewResult WritersMenu()
@@ -47,12 +52,13 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult NewMessage(Message message, string button)
         {
+            string sender = (string)Session["WriterMail"];
             ValidationResult validationResult = messagevalidator.Validate(message);
             if (button == "add")
             {
                 if (validationResult.IsValid)
                 {
-                    message.SenderMail = "admin@gmail.com";
+                    message.SenderMail = sender;
                     message.IsDraft = false;
                     message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                     messageManager.MessageAdd(message);

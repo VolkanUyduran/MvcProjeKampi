@@ -11,8 +11,8 @@ namespace Business.Abstarct
     {
         List<Message> GetAllRead();
         List<Message> IsDraft();
-        List<Message> GetListInbox();
-        List<Message> GetListSendbox();
+        List<Message> GetListInbox(string p);
+        List<Message> GetListSendbox(string p);
         Message GetById(int id);
         void MessageAdd(Message message);
         void MessageDelete(Message message);

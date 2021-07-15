@@ -13,7 +13,8 @@ namespace Entity.Concrete
         public int TalentId { get; set; }
         public string Name { get; set; }
         public string About { get; set; }
-        public string TalentName { get; set; }
         public string Percent { get; set; }
+        public int? SkillAreaId { get; set; }
+        public virtual SkillArea SkillArea { get; set; }
     }
 }

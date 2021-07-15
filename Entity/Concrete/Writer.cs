@@ -10,6 +10,8 @@ namespace Entity.Concrete
         [Key]
         public int WriterId { get; set; }
         [StringLength(50)]
+        public string WriterUserName { get; set; }
+        [StringLength(50)]
         public string WriterName { get; set; }
         [StringLength(50)]
         public string WriterSurname { get; set; }

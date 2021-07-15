@@ -23,13 +23,13 @@ namespace MvcProjeKampi.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult AddTalent(Talent talent)
-        {
-            talent.Name = "Volkan Uyduran";
-            talent.About = "Kod Yazmayı Seviyorum";
-            talentManager.TalentAdd(talent);
-            return RedirectToAction("Index");
-        }
+        //[HttpPost,ValidateInput(false)]
+        //public ActionResult AddTalent(Talent talent)
+        //{
+        //    talent.Name = "Volkan Uyduran";
+        //    talent.About = "Kod Yazmayı Seviyorum";
+        //    talentManager.TalentAdd(talent);
+        //    return RedirectToAction("Index");
+        //}
     }
 }

@@ -60,10 +60,14 @@
     <Compile Include="Abstract\IImageFileDal.cs" />
     <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IRoleDal.cs" />
+    <Compile Include="Abstract\ISkillAreaDal.cs" />
+    <Compile Include="Abstract\IStatusDal.cs" />
     <Compile Include="Abstract\ITalentDal.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\GenericReporsitory.cs" />
+    <Compile Include="EntityFramework\EfRoleDal.cs" />
     <Compile Include="EntityFramework\EfAboutDal.cs" />
     <Compile Include="EntityFramework\EfAdminDal.cs" />
     <Compile Include="EntityFramework\EfCategoryDal.cs" />
@@ -72,6 +76,8 @@
     <Compile Include="EntityFramework\EfHeadingDal.cs" />
     <Compile Include="EntityFramework\EfImageDal.cs" />
     <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfSkillAreaDal.cs" />
+    <Compile Include="EntityFramework\EfStatusDal.cs" />
     <Compile Include="EntityFramework\EfTalentDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202105261723537_mig1.cs" />
@@ -154,6 +160,18 @@
     <Compile Include="Migrations\202106201228369_mig_hash.designer.cs">
       <DependentUpon>202106201228369_mig_hash.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107142117585_mig_roles.cs" />
+    <Compile Include="Migrations\202107142117585_mig_roles.designer.cs">
+      <DependentUpon>202107142117585_mig_roles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107142252036_mig_initial.cs" />
+    <Compile Include="Migrations\202107142252036_mig_initial.designer.cs">
+      <DependentUpon>202107142252036_mig_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107152226276_mig_skillArea.cs" />
+    <Compile Include="Migrations\202107152226276_mig_skillArea.designer.cs">
+      <DependentUpon>202107152226276_mig_skillArea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -227,6 +245,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106201228369_mig_hash.resx">
       <DependentUpon>202106201228369_mig_hash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107142117585_mig_roles.resx">
+      <DependentUpon>202107142117585_mig_roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107142252036_mig_initial.resx">
+      <DependentUpon>202107142252036_mig_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107152226276_mig_skillArea.resx">
+      <DependentUpon>202107152226276_mig_skillArea.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

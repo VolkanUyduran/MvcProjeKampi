@@ -58,6 +58,12 @@
       <HintPath>..\packages\FluentValidation.10.2.1\lib\netstandard2.0\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -135,6 +141,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminCategoryController.cs" />
+    <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
@@ -324,8 +331,18 @@
     <Content Include="AdminLTE-3.0.4\docs\_layouts\home.html" />
     <Content Include="AdminLTE-3.0.4\docs\_layouts\page.html" />
     <Content Include="AdminLTE-3.0.4\docs\_layouts\post.html" />
+    <Content Include="AdminLTE-3.0.4\images\Adsız1.png" />
+    <Content Include="AdminLTE-3.0.4\images\Adsız2.png" />
+    <Content Include="AdminLTE-3.0.4\images\Adsız3.png" />
+    <Content Include="AdminLTE-3.0.4\images\Adsız4.png" />
+    <Content Include="AdminLTE-3.0.4\images\Adsız5.png" />
+    <Content Include="AdminLTE-3.0.4\images\Adsız6.png" />
+    <Content Include="AdminLTE-3.0.4\images\Adsız7.png" />
+    <Content Include="AdminLTE-3.0.4\images\Adsız8.png" />
+    <Content Include="AdminLTE-3.0.4\images\Adsız9.png" />
+    <Content Include="AdminLTE-3.0.4\images\amerika.jpg" />
     <Content Include="AdminLTE-3.0.4\images\amsterdam.jpg" />
-    <Content Include="AdminLTE-3.0.4\images\berlin.jpg" />
+    <Content Include="AdminLTE-3.0.4\images\Berlin.jpg" />
     <Content Include="AdminLTE-3.0.4\images\helsinki.jpg" />
     <Content Include="AdminLTE-3.0.4\images\lisbon.jpg" />
     <Content Include="AdminLTE-3.0.4\images\madrid.jpg" />
@@ -334,6 +351,7 @@
     <Content Include="AdminLTE-3.0.4\images\newyork.jpeg" />
     <Content Include="AdminLTE-3.0.4\images\paris.jpg" />
     <Content Include="AdminLTE-3.0.4\images\roma.jpg" />
+    <Content Include="AdminLTE-3.0.4\images\Türkiye.jpg" />
     <Content Include="AdminLTE-3.0.4\index.html" />
     <Content Include="AdminLTE-3.0.4\index2.html" />
     <Content Include="AdminLTE-3.0.4\index3.html" />
@@ -2057,20 +2075,60 @@
     <Content Include="AdminLTE-3.0.4\plugins\toastr\toastr.min.css" />
     <Content Include="AdminLTE-3.0.4\plugins\toastr\toastr.min.js" />
     <Content Include="AdminLTE-3.0.4\starter.html" />
+    <Content Include="AdminLTE-3.0.4\web\css\aos-animation.css" />
+    <Content Include="AdminLTE-3.0.4\web\css\aos.css" />
+    <Content Include="AdminLTE-3.0.4\web\css\bootstrap.css" />
+    <Content Include="AdminLTE-3.0.4\web\css\fontawesome-all.css" />
+    <Content Include="AdminLTE-3.0.4\web\css\roadmap.css" />
+    <Content Include="AdminLTE-3.0.4\web\css\simpleLightbox.css" />
+    <Content Include="AdminLTE-3.0.4\web\css\snow.css" />
     <Content Include="AdminLTE-3.0.4\web\css\style.css" />
     <Content Include="AdminLTE-3.0.4\web\images\5.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\banner.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\close.png" />
+    <Content Include="AdminLTE-3.0.4\web\images\contact.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\exp.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\g1.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\g2.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\g3.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\g4.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\g5.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\g6.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\g7.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\g8.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\g9.jpg" />
     <Content Include="AdminLTE-3.0.4\web\images\img1.png" />
+    <Content Include="AdminLTE-3.0.4\web\images\loader.gif" />
+    <Content Include="AdminLTE-3.0.4\web\images\move_up.png" />
+    <Content Include="AdminLTE-3.0.4\web\images\next.png" />
+    <Content Include="AdminLTE-3.0.4\web\images\prev.png" />
+    <Content Include="AdminLTE-3.0.4\web\images\serve.jpg" />
     <Content Include="AdminLTE-3.0.4\web\images\sprite.png" />
+    <Content Include="AdminLTE-3.0.4\web\images\stats.jpg" />
+    <Content Include="AdminLTE-3.0.4\web\images\testimonials.jpg" />
     <Content Include="AdminLTE-3.0.4\web\index.html" />
+    <Content Include="AdminLTE-3.0.4\web\js\aos.js" />
     <Content Include="AdminLTE-3.0.4\web\js\bars.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\bootstrap.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\easing.js" />
     <Content Include="AdminLTE-3.0.4\web\js\easyResponsiveTabs.js" />
     <Content Include="AdminLTE-3.0.4\web\js\jquery-1.11.1.min.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\jquery-2.2.3.min.js" />
     <Content Include="AdminLTE-3.0.4\web\js\jquery.circlechart.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\jquery.countup.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\jquery.roadmap.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\jquery.waypoints.min.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\move-top.js" />
+    <Content Include="AdminLTE-3.0.4\web\js\simpleLightbox.js" />
     <Content Include="AdminLTE-3.0.4\web\w3layouts-License.txt" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-brands-400.svg" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-regular-400.svg" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.svg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2637,6 +2695,18 @@
     <Content Include="AdminLTE-3.0.4\login-form-20\__MACOSX\login-form-20\scss\bootstrap\utilities\.__text.scss" />
     <Content Include="AdminLTE-3.0.4\login-form-20\__MACOSX\login-form-20\scss\bootstrap\utilities\.__visibility.scss" />
     <Content Include="AdminLTE-3.0.4\login-form-20\__MACOSX\login-form-20\scss\bootstrap\vendor\.__rfs.scss" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-brands-400.eot" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-brands-400.ttf" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-brands-400.woff" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-brands-400.woff2" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-regular-400.eot" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-regular-400.ttf" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-regular-400.woff" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-regular-400.woff2" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.eot" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.ttf" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.woff" />
+    <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2719,6 +2789,13 @@
     <Content Include="Views\WriterPanel\AllHeading.cshtml" />
     <Content Include="Views\WriterPanelContent\AddContent.cshtml" />
     <Content Include="Views\WriterPanelContent\ToDoList.cshtml" />
+    <Content Include="Views\Home\HomePage.cshtml" />
+    <Content Include="Views\Heading\HeadingReport.cshtml" />
+    <Content Include="Views\Home\SweetAlert.cshtml" />
+    <Content Include="Views\Authorization\Index.cshtml" />
+    <Content Include="Views\Authorization\AddAdmin.cshtml" />
+    <Content Include="Views\Authorization\UpdateRole.cshtml" />
+    <Content Include="Views\Authorization\UpdateProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

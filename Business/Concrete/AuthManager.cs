@@ -10,25 +10,36 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-   public class AuthManager:IAuthService
+    public class AuthManager : IAuthService
     {
         IAdminService _adminService;
         IWriterService _writerService;
+
+        public AuthManager(IAdminService adminService)
+        {
+            _adminService = adminService;
+        }
+
+        public AuthManager(IWriterService writerService)
+        {
+            _writerService = writerService;
+        }
 
         public AuthManager(IAdminService adminService, IWriterService writerService)
         {
             _adminService = adminService;
             _writerService = writerService;
         }
-        public bool Login(LoginDto loginDto)
+        public bool AdminLogIn(LoginDto loginDto)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var crypto = new System.Security.Cryptography.HMACSHA512())
             {
-                var userNameHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.AdminUserName));
-                var user = _adminService.GetAdmins();
-                foreach (var item in user)
+                byte[] mailHash = crypto.ComputeHash(Encoding.UTF8.GetBytes(loginDto.AdminMail));
+                var admin = _adminService.GetAdmins();
+                foreach (var item in admin)
                 {
-                    if (HashingHelper.VerifyPasswordHash(loginDto.AdminUserName, loginDto.AdminPassword, item.AdminUserName, item.AdminPasswordHash, item.AdminPasswordSalt))
+                    if (HashingHelper.AdminVerifyPasswordHash(loginDto.AdminMail, loginDto.AdminPassword, item.AdminMail,
+                        item.AdminPasswordHash, item.AdminPasswordSalt))
                     {
                         return true;
                     }
@@ -37,28 +48,34 @@ namespace Business.Concrete
             }
         }
 
-        public void Register(string userName, string password)
+        public void AdminRegister(string adminUserName, string adminMail, string password, int adminRole, int status)
         {
-            byte[] userNameHash, passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(userName, password, out userNameHash, out passwordHash, out passwordSalt);
+            byte[] mailHash, passwordHash, passwordSalt;
+            HashingHelper.AdminCreatePasswordHash(adminMail, password, out mailHash, out passwordHash, out passwordSalt);
             var admin = new Admin
             {
-                AdminUserName = userNameHash,
+                AdminUserName = adminUserName,
+                AdminMail = mailHash,
                 AdminPasswordHash = passwordHash,
                 AdminPasswordSalt = passwordSalt,
-                AdminRole = "A"
+                RoleId = adminRole,
+                StatusId = status
             };
             _adminService.Add(admin);
         }
 
-        public bool WriterLogin(WriterLoginDto writerLoginDto)
+        //------------------------- WRITER -----------------------------\\
+
+        public bool WriterLogIn(WriterLoginDto writerLogInDto)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var crypto = new System.Security.Cryptography.HMACSHA512())
             {
+                //var mailHash = crypto.ComputeHash(Encoding.UTF8.GetBytes(writerLogInDto.WriterMail));
                 var writer = _writerService.GetList();
                 foreach (var item in writer)
                 {
-                    if (HashingHelper.WriterVerifyPasswordHash(writerLoginDto.WriterPassword, item.WriterPasswordHash, item.WriterPasswordSalt))
+                    if (HashingHelper.WriterVerifyPasswordHash(writerLogInDto.WriterPassword,
+                        item.WriterPasswordHash, item.WriterPasswordSalt))
                     {
                         return true;
                     }
@@ -67,20 +84,25 @@ namespace Business.Concrete
             }
         }
 
-        public void WriterRegister(string mail, string password)
+        public void WriterRegister(string writerName, string writerSurName, string writerTitle, string writerAbout, string writerImage, string writerUserName, string writerMail, string password, bool WriterStatus)
         {
-            byte[] passwordHash, passwordSalt;
+            byte[] mailHash, passwordHash, passwordSalt;
             HashingHelper.WriterCreatePasswordHash(password, out passwordHash, out passwordSalt);
             var writer = new Writer
             {
-                WriterMail = mail,
+                WriterName = writerName,
+                WriterSurname = writerSurName,
+                WriterTitle = writerTitle,
+                WriterAbout = writerAbout,
+                WriterImage = writerImage,
+                WriterUserName = writerUserName,
+                WriterMail = writerMail,
                 WriterPasswordHash = passwordHash,
                 WriterPasswordSalt = passwordSalt,
+                WriterStatus = WriterStatus
             };
             _writerService.Add(writer);
         }
 
-
     }
 }
-

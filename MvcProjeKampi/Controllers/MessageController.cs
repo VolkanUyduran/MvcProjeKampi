@@ -15,14 +15,14 @@ namespace MvcProjeKampi.Controllers
         MessageValidator messageValidator = new MessageValidator();
 
         [Authorize]
-        public ActionResult Inbox()
+        public ActionResult Inbox(string p)
         {
-            var MessageList = messageManager.GetListInbox();
+            var MessageList = messageManager.GetListInbox(p);
             return View(MessageList);
         }
-        public ActionResult Sendbox()
+        public ActionResult Sendbox(string p)
         {
-            var messagelist = messageManager.GetListSendbox();
+            var messagelist = messageManager.GetListSendbox(p);
             return View(messagelist);
         }
         public ActionResult GetInboxMessageDetails(int id)
@@ -38,11 +38,13 @@ namespace MvcProjeKampi.Controllers
         [HttpGet]
         public ActionResult NewMessage()
         {
+
             return View();
         }
         [HttpPost]
         public ActionResult NewMessage(Message message, string button)
         {
+            
             ValidationResult validationResult = messageValidator.Validate(message);
             if (button == "add")
             {
@@ -146,9 +148,9 @@ namespace MvcProjeKampi.Controllers
             messageManager.MessageUpdate(result);
             return RedirectToAction("Inbox");
         }
-        public ActionResult MessageRead()
+        public ActionResult MessageRead(string p)
         {
-            var result = messageManager.GetListInbox().Where(m => m.IsRead == true).ToList();
+            var result = messageManager.GetListInbox(p).Where(m => m.IsRead == true).ToList();
             return View(result);
         }
         public ActionResult MessageUnRead()

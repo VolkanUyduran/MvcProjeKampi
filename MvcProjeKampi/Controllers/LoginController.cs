@@ -22,7 +22,6 @@ namespace MvcProjeKampi.Controllers
     public class LoginController : Controller
     {
         IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
-        Context context = new Context();
 
         [HttpGet]
         public ActionResult Index()
@@ -32,10 +31,10 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult Index(LoginDto loginDto)
         {
-            if (authService.Login(loginDto))
+            if (authService.AdminLogIn(loginDto))
             {
-                FormsAuthentication.SetAuthCookie(loginDto.AdminUserName, false);
-                Session["AdminUserName"] = loginDto.AdminUserName;
+                FormsAuthentication.SetAuthCookie(loginDto.AdminMail, false);
+                Session["AdminMail"] = loginDto.AdminMail;
                 return RedirectToAction("Index", "AdminCategory");
             }
             else
@@ -45,6 +44,7 @@ namespace MvcProjeKampi.Controllers
             }
 
         }
+
         public ActionResult LogOut()
         {
 
@@ -76,7 +76,7 @@ namespace MvcProjeKampi.Controllers
                     string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
             var captchaResponse = JsonConvert.DeserializeObject<CaptchaResult>(reply);
 
-            if (authService.WriterLogin(writerLoginDto) && captchaResponse.Success)
+            if (authService.WriterLogIn(writerLoginDto) && captchaResponse.Success)
             {
                 FormsAuthentication.SetAuthCookie(writerLoginDto.WriterMail, false);
                 Session["WriterMail"] = writerLoginDto.WriterMail;
