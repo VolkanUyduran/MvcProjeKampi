@@ -54,6 +54,7 @@
     <Compile Include="Abstarct\IImageFileService.cs" />
     <Compile Include="Abstarct\IMessageService.cs" />
     <Compile Include="Abstarct\IRoleService.cs" />
+    <Compile Include="Abstarct\ISkillAreaService.cs" />
     <Compile Include="Abstarct\IStatusService.cs" />
     <Compile Include="Abstarct\ITalentService.cs" />
     <Compile Include="Abstarct\IWriterService.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Concrete\IStatusManager.cs" />
     <Compile Include="Concrete\MessageManager.cs" />
     <Compile Include="Concrete\RoleManager.cs" />
+    <Compile Include="Concrete\SkillAreaManager.cs" />
     <Compile Include="Concrete\StatusManager.cs" />
     <Compile Include="Concrete\TalentManager.cs" />
     <Compile Include="Concrete\WriterManager.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="ValidationRules\CategoryValidator.cs" />
     <Compile Include="ValidationRules\ContactValidator.cs" />
     <Compile Include="ValidationRules\MessageValidator.cs" />
+    <Compile Include="ValidationRules\TalentValidator.cs" />
     <Compile Include="ValidationRules\WriterValidator.cs" />
   </ItemGroup>
   <ItemGroup>

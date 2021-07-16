@@ -10,8 +10,8 @@
 @using (Html.BeginForm("AddAdmin", "Authorization", FormMethod.Post))
 {
     <div class="form-group">
-        @Html.Label("Admin Adı")
-        @Html.TextBoxFor(x => x.ad, new {@class="form-control"})
+        @Html.Label("Category Adı")
+        @Html.TextBoxFor(x => x.CategoryName, new {@class="form-control"})
 
         <br /><br />
         @Html.Label("Açıklamayı Giriniz")

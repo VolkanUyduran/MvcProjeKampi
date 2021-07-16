@@ -1,21 +1,41 @@
-﻿@model Entity.Concrete.Talent
+﻿@model  Entity.Concrete.Talent
 @{
     ViewBag.Title = "AddTalent";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_TalentLayout.cshtml";
 }
 
-
-<h1>Yeni Yetenek Ekleme Sayfası</h1>
-<br />
-@using (Html.BeginForm("AddTalent", "Talent", FormMethod.Post))
-{
-    <div class="form-group">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yetenek Bölümü Ekleme</title>
+</head>
+<body>
+    @using (Html.BeginForm("AddTalent", "Talent", FormMethod.Post))
+    {
+    <form method="post" action="AddSkillArea">
         @Html.Label("Yetenek Adı")
-        @Html.TextBoxFor(x => x.TalentName, new { @class = "form-control" })
-        <br /><br />
-        @Html.Label("Yetenek Derecen")
+        <br />
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        <br />
+        @Html.Label("Yetenek Detayı")
+        <br />
+        @Html.TextBoxFor(x => x.About, new { @class = "form-control" })
+        <br />
+        @Html.Label("Yetenek Bilgisi (100 üzerinden)")
+        <br />
         @Html.TextBoxFor(x => x.Percent, new { @class = "form-control" })
-        <br /><br />
+        <br />
+        @Html.Label("Yetenek Alanı")
+        <br />
+        @Html.DropDownListFor(x => x.SkillAreaId, (List<SelectListItem>)ViewBag.valueSkill, new { @class = "form-control" })
+
         <button class="btn btn-primary">Kaydet</button>
-    </div>
-}
+        <br />
+    </form>
+    }
+    <!--bar-js-->
+    <script src="~/AdminLTE-3.0.4/skills/js/bars.js"></script>
+    <p>
+    </p>
+</body>
+</html>

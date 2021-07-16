@@ -1,0 +1,36 @@
+﻿@model  Entity.Concrete.SkillArea
+@{
+    ViewBag.Title = "UpdateSkillArea";
+    Layout = "~/Views/Shared/_TalentLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yetenek Alanı Güncelleme</title>
+</head>
+<body>
+    <h3 class="title">Yetenek Alanı Güncelle</h3>
+    <div class="col-md-6 skills-right bar_group">
+        @using (Html.BeginForm("UpdateSkillArea", "SkillArea", FormMethod.Post))
+        {
+            <form method="post" action="#">
+                <div class="modal-body">
+                    @Html.HiddenFor(x => x.SkillAreaId, new { @class = "form-control" })
+                    @Html.Label("Yetenek Alanı Adı")
+                    <br />
+                    @Html.TextBoxFor(x => x.Area, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Yetenek Alanı Detayı")
+                    <br />
+                    @Html.TextAreaFor(x => x.AreaDetails, new { @class = "form-control" })
+                    <br /> 
+                    <button class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        }
+    </div>
+    <script src="~/AdminLTE-3.0.4/skills/js/bars.js"></script>
+    <div class="clear"> </div>
+</body>
+</html>
