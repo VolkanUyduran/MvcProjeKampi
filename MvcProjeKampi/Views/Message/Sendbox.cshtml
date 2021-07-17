@@ -80,7 +80,16 @@
                                             <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
                                             <td class="mailbox-name"><a href="/Message/GetSendboxMessageDetails/@item.MessageId">@item.ReceiverMail</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> -@item.MessageContent.Substring(0, 5)
+                                                @if (item.MessageContent.Length >= 50)
+                                                {
+                                                    @Html.Raw(item.MessageContent.Substring(0, 50))
+                                                    @*<b>@item.Subject</b><a> - </a> @item.MessageContent*@
+                                                }
+                                                else if (item.MessageContent.Length < 50)
+                                                {
+                                                    <b>@item.Subject</b><a> - </a>@Html.Raw(item.MessageContent)<a>...</a>
+                                                    @*<b>@item.Subject</b><a> - </a>@item.MessageContent.Substring(0, 30) <a>...</a>*@
+                                                }
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">@item.MessageDate.ToShortDateString().ToString()</td>

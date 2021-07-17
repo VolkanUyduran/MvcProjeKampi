@@ -33,6 +33,8 @@ namespace MvcProjeKampi.Controllers
             var categoryStatusTrue = _context.Categories.Count(x => x.CategoryStatus == true); // 5.Şartımız
             ViewBag.activeCategories = categoryStatusTrue;
 
+            string session = (string)Session["AdminMail"];
+            ViewBag.a = session;
             return View();
         }
     }

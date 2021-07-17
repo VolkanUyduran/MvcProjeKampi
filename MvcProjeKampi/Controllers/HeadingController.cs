@@ -21,6 +21,11 @@ namespace MvcProjeKampi.Controllers
             var headingvalues = headingManager.GetList();
             return View(headingvalues);
         }
+        public ActionResult HeadingReport()
+        {
+            var headingValues = headingManager.GetList();
+            return View(headingValues);
+        }
         [HttpGet]
         public ActionResult AddHeading()
         {
@@ -92,5 +97,6 @@ namespace MvcProjeKampi.Controllers
             headingManager.Active(heading);
             return RedirectToAction("Index");
         }
+
     }
 }

@@ -6,6 +6,7 @@ using FluentValidation.Results;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using PagedList;
 
 namespace MvcProjeKampi.Controllers
 {
@@ -15,14 +16,16 @@ namespace MvcProjeKampi.Controllers
         MessageValidator messageValidator = new MessageValidator();
 
         [Authorize]
-        public ActionResult Inbox(string p)
+        public ActionResult Inbox(int? page)
         {
-            var MessageList = messageManager.GetListInbox(p);
+            string session = (string)Session["AdminMail"];
+            var MessageList = messageManager.GetListInbox(session).ToPagedList(page ?? 1, 5);
             return View(MessageList);
         }
-        public ActionResult Sendbox(string p)
+        public ActionResult Sendbox()
         {
-            var messagelist = messageManager.GetListSendbox(p);
+            string session = (string)Session["AdminMail"];
+            var messagelist = messageManager.GetListSendbox(session);
             return View(messagelist);
         }
         public ActionResult GetInboxMessageDetails(int id)
@@ -31,6 +34,16 @@ namespace MvcProjeKampi.Controllers
             return View(values);
         }
         public ActionResult GetSendboxMessageDetails(int id)
+        {
+            var values = messageManager.GetById(id);
+            return View(values);
+        }
+        public ActionResult GetUnReadMessageDetails(int id)
+        {
+            var values = messageManager.GetById(id);
+            return View(values);
+        }
+        public ActionResult GetReadMessageDetails(int id)
         {
             var values = messageManager.GetById(id);
             return View(values);
@@ -44,14 +57,14 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult NewMessage(Message message, string button)
         {
-            
+            string session = (string)Session["AdminMail"];
+
             ValidationResult validationResult = messageValidator.Validate(message);
             if (button == "add")
             {
                 if (validationResult.IsValid)
                 {
-                    message.SenderMail = "alitildiz@gmail.com";
-                    message.IsDraft = false;
+                    message.SenderMail = session;
                     message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                     messageManager.MessageAdd(message);
                     return RedirectToAction("Sendbox");

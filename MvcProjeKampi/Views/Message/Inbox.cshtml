@@ -1,11 +1,17 @@
-﻿@model  List<Entity.Concrete.Message>
+﻿@using Entity.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Message>
 @{
     ViewBag.Title = "Inbox";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@{ string message = "";
-    string color = "";
+@{ 
+
+    string important = "";
+    string read = "";
+
 }
 <!DOCTYPE html>
 <html>
@@ -72,41 +78,35 @@
 
                                     @foreach (var item in Model)
                                     {
-                                        if (item.IsRead == false)
-                                        {
-                                            message = "Oku";
-                                            color = "btn btn-outline-info btn-sm";
-
-                                        }
-                                        if (item.IsRead == true)
-                                        {
-                                            color = "btn btn-outline-success btn-sm";
-                                        }
+                                        read = (!item.IsRead) ? "warning" : "capitalize";
+                                        //important = (!item.IsImportant) ? "body" : "warning";
                                         <tr>
                                             <td>
-                                                @if (item.IsRead == false)
-                                                {
-                                                    <a class="@color" href="/Message/IsRead/@item.MessageId">
-                                                        <i class="far fa-envelope"></i>
-                                                        @message
-                                                    </a>
-                                                }
-                                                else
-                                                {
-                                                    <a class="@color" href="/Message/IsRead/@item.MessageId">
-                                                        <i class="far fa-envelope-open"></i>
-
-                                                    </a>
-                                                }
-
+                                                <div class="icheck-primary">
+                                                    <input type="checkbox" value="" id="check1">
+                                                    <label for="check1"></label>
+                                                </div>
                                             </td>
-                                            <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                                            <td class="mailbox-name"><a href="/Message/GetMessageDetails/@item.MessageId">@item.SenderMail</a></td>
+                                            <td>
+                                                <a class="btn btn-default btn-sm" href="/Message/IsRead/@item.MessageId"><i class="fas fa-mail-bulk text-@read"></i></a>
+                                            </td>
+                                            <td class="mailbox-star"><a href="/Message/IsImportant/@item.MessageId"><i class="fas fa-star text-@important"></i></a></td>
+
+                                            <td class="mailbox-name"><a href="/Message/GetInboxMessageDetails/@item.MessageId">@item.SenderMail</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> - @item.MessageContent.Substring(0, 5)...
+                                                @if (item.MessageContent.Length >= 50)
+                                                {
+                                                    @Html.Raw(item.MessageContent.Substring(0, 50))
+                                                    @*<b>@item.Subject</b><a> - </a> @item.MessageContent*@
+                                                }
+                                                else if (item.MessageContent.Length < 50)
+                                                {
+                                                    <b>@item.Subject</b><a> - </a>@Html.Raw(item.MessageContent)<a>...</a>
+                                                    @*<b>@item.Subject</b><a> - </a>@item.MessageContent.Substring(0, 30) <a>...</a>*@
+                                                }
                                             </td>
                                             <td class="mailbox-attachment"></td>
-                                            <td class="mailbox-date">@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>
+                                            <td class="mailbox-date"><b>@(((DateTime) item.MessageDate).ToString("dd-MMM-yyyy"))</b></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -156,10 +156,10 @@
         @*<script src="~/Themes/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>*@
         <script src="~/Themes/summernote/summernote-bs4.min.js"></script>
         <script>
-        $(function () {
-            // Summernote
-            $('#compose-textarea').summernote()
-        })
+            $(function () {
+                // Summernote
+                $('#compose-textarea').summernote()
+            })
         </script>
     }
 </body>
