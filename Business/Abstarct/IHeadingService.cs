@@ -11,6 +11,7 @@ namespace Business.Abstarct
     {
         List<Heading> GetList();
         List<Heading> GetListByWriter(int id);
+        List<Heading> GetListByCategory(int id);
         Heading GetById(int id);
         void Active(Heading heading);
         void Add(Heading heading);

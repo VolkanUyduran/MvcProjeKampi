@@ -45,6 +45,11 @@ namespace Business.Concrete
             return _headingDal.List();
         }
 
+        public List<Heading> GetListByCategory(int id)
+        {
+            return _headingDal.List(x => x.CategoryId == id);
+        }
+
         public List<Heading> GetListByWriter(int id)
         {
             return _headingDal.List(x => x.WriterId ==id);
@@ -54,5 +59,6 @@ namespace Business.Concrete
         {
             _headingDal.Update(heading);
         }
+
     }
 }

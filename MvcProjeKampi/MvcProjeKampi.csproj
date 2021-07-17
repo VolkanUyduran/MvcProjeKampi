@@ -2961,6 +2961,7 @@
     <Content Include="Views\Message\GetUnReadMessageDetails.cshtml" />
     <Content Include="Views\Message\MessageRead.cshtml" />
     <Content Include="Views\Message\GetReadMessageDetails.cshtml" />
+    <Content Include="Views\AdminCategory\GetByCategoryId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

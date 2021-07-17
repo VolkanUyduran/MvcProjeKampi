@@ -1,0 +1,22 @@
+﻿@model  List<Entity.Concrete.Heading>
+@{
+    ViewBag.Title = "GetByCategoryId";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Kategori Adı</th>
+        <th>Başlık Adı</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.HeadingId</td>
+            <td>@item.Category.CategoryName</td>
+            <td>@item.HeadingName</td>
+        </tr>
+    }
+</table>

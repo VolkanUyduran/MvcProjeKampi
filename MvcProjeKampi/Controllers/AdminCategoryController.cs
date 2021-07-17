@@ -14,6 +14,7 @@ namespace MvcProjeKampi.Controllers
     public class AdminCategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        HeadingManager headingManager = new HeadingManager(new EfHeadingDal());
         
         public ActionResult Index()
         {
@@ -64,6 +65,11 @@ namespace MvcProjeKampi.Controllers
         {
             cm.CategoryUpdate(p);
             return RedirectToAction("Index");
+        }
+        public ActionResult GetByCategoryId(int id)
+        {
+            var headingvalue = headingManager.GetListByCategory(id);
+            return View(headingvalue);
         }
     }
 }

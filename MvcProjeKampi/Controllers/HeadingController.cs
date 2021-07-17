@@ -97,6 +97,7 @@ namespace MvcProjeKampi.Controllers
             headingManager.Active(heading);
             return RedirectToAction("Index");
         }
+        
 
     }
 }
