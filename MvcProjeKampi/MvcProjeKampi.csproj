@@ -2962,6 +2962,8 @@
     <Content Include="Views\Message\MessageRead.cshtml" />
     <Content Include="Views\Message\GetReadMessageDetails.cshtml" />
     <Content Include="Views\AdminCategory\GetByCategoryId.cshtml" />
+    <Content Include="Views\Gallery\AddImage.cshtml" />
+    <Content Include="Views\Gallery\UpdateImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

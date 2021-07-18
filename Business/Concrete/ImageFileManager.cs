@@ -18,9 +18,29 @@ namespace Business.Concrete
             _ımageFileDal = ımageFileDal;
         }
 
+        public ImageFile GetByIdImageFile(int id)
+        {
+            return _ımageFileDal.Get(x => x.ImageID == id);
+        }
+
         public List<ImageFile> GetList()
         {
             return _ımageFileDal.List();
+        }
+
+        public void ImageAdd(ImageFile imageFile)
+        {
+            _ımageFileDal.Insert(imageFile);
+        }
+
+        public void ImageDelete(ImageFile imageFile)
+        {
+            _ımageFileDal.Delete(imageFile);
+        }
+
+        public void ImageUpdate(ImageFile imageFile)
+        {
+            _ımageFileDal.Update(imageFile);
         }
     }
 }
