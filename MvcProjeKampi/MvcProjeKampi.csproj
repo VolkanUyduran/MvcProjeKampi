@@ -2857,6 +2857,7 @@
     <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.ttf" />
     <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.woff" />
     <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.woff2" />
+    <Content Include="DB\DbMvcKamp.bak" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
