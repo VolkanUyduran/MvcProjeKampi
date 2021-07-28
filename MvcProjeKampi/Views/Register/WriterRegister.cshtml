@@ -31,13 +31,31 @@
 
                         @using (Html.BeginForm("WriterRegister", "Register", FormMethod.Post))
                         {
-                       
+
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Mail Adresi" name="WriterMail" required>
+                                <input type="text" class="form-control" placeholder="Yazar Adı" name="WriterName" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Yazar Soyadı" name="WriterSurName" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Yazar Başlık" name="WriterTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Yazar Hakkında" name="WriterAbout" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Yazar Görsel Linki" name="WriterImage" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Kullanıcı Adı" name="WriterUserName" required>
                             </div>
                             <div class="form-group">
                                 <input id="password-field" type="password" class="form-control" name="WriterPassword" placeholder="******" required>
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Mail Adresi" name="WriterMail" required>
                             </div>
 
                             <div class="form-group">

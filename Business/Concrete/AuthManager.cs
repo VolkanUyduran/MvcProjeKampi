@@ -60,6 +60,7 @@ namespace Business.Concrete
                 AdminPasswordSalt = passwordSalt,
                 RoleId = adminRole,
                 StatusId = status
+
             };
             _adminService.Add(admin);
         }

@@ -59,7 +59,6 @@ namespace Business.Utilities.Hashing
             }
         }
 
-
         public static string AdminPasswordDecode(string password)
         {
             UTF8Encoding encoder = new UTF8Encoding();
@@ -68,7 +67,6 @@ namespace Business.Utilities.Hashing
             return Convert.ToBase64String(hashedDataBytes);
         }
 
-        //----------------------------------- WRITER --------------------------------------------\\
 
         public static void WriterCreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {

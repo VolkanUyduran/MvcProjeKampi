@@ -68,15 +68,8 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult WriterLogin(WriterLoginDto writerLoginDto)
         {
-            var response = Request["g-recaptcha-response"];
-            const string secret = "6Lc9zzgbAAAAAFBGD3Gb201yvNAX4Tb5LAzlqy0d";
-            var client = new WebClient();
-            var reply =
-                client.DownloadString(
-                    string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
-            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResult>(reply);
 
-            if (authService.WriterLogIn(writerLoginDto) && captchaResponse.Success)
+            if (authService.WriterLogIn(writerLoginDto))
             {
                 FormsAuthentication.SetAuthCookie(writerLoginDto.WriterMail, false);
                 Session["WriterMail"] = writerLoginDto.WriterMail;

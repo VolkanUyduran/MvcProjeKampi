@@ -13,6 +13,5 @@ namespace Entity.Dto
         public string AdminPassword { get; set; }
         public int AdminRoleId { get; set; }
         public int AdminStatusId { get; set; }
-
     }
 }
